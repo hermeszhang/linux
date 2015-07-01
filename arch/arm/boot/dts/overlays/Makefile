@@ -20,6 +20,7 @@ dtb-$(RPI_DT_OVERLAYS) += gpio-poweroff-overlay.dtb
 dtb-$(RPI_DT_OVERLAYS) += hifiberry-amp-overlay.dtb
 dtb-$(RPI_DT_OVERLAYS) += hifiberry-dac-overlay.dtb
 dtb-$(RPI_DT_OVERLAYS) += hifiberry-dacplus-overlay.dtb
+dtb-$(RPI_DT_OVERLAYS) += superaudioboard-overlay.dtb
 dtb-$(RPI_DT_OVERLAYS) += hifiberry-digi-overlay.dtb
 dtb-$(RPI_DT_OVERLAYS) += hy28a-overlay.dtb
 dtb-$(RPI_DT_OVERLAYS) += hy28b-overlay.dtb
