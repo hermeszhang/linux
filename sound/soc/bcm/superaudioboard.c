@@ -39,10 +39,21 @@ static int snd_rpi_superaudioboard_hw_params(struct snd_pcm_substream *substream
 {
 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
 	struct snd_soc_dai *cpu_dai = rtd->cpu_dai;
+	struct snd_soc_dai *codec_dai = rtd->codec_dai;
+	struct snd_soc_codec *codec = rtd->codec;
 
-	// TODO: Need to set this to a different value or read in value (like hifiberry-dac)?
-	// Note, the bclk ratio is always 64 in master mode. Need to double check CS4271 driver
-	// to see if it uses correct mode.
+	// Need to tell the codec what it's system clock is (24.576MHz crystal)
+	int sysclk = 24576000;
+
+	int ret = snd_soc_dai_set_sysclk(codec_dai,0,sysclk,0); // Don't worry about clock id and direction (it's ignored in cs4271 driver)
+
+	if (ret < 0)
+	{
+		dev_err(codec->dev, "Unable to set CS4271 system clock.");
+		return ret;
+	}
+
+	// Note, the bclk ratio is always 64 in master mode
 	return snd_soc_dai_set_bclk_ratio(cpu_dai, 64);
 }
 
