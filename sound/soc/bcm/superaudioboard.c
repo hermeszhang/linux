@@ -72,8 +72,8 @@ static struct snd_soc_dai_link snd_rpi_superaudioboard_dai[] = {
 	.codec_dai_name	= "cs4271-hifi",
 	.platform_name	= "bcm2708-i2s.0",
 	.codec_name	= "cs4271.1-0010", // TODO: This seems to be codec name . i2c # (1) - i2c address, but not sure
-	.dai_fmt	= SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | // TODO: Need to check these settings
-				SND_SOC_DAIFMT_CBS_CFS,
+	.dai_fmt	= SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_IF | // Using inverted frame clock and normal bit clock, I2S mode
+				SND_SOC_DAIFMT_CBM_CFM, // Codec bit clock and frame clock master
 	.ops		= &snd_rpi_superaudioboard_ops,
 	.init		= snd_rpi_superaudioboard_init,
 },
