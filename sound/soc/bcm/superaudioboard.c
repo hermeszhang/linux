@@ -131,7 +131,7 @@ static int snd_rpi_superaudioboard_remove(struct platform_device *pdev)
 }
 
 static const struct of_device_id snd_rpi_superaudioboard_of_match[] = {
-	{ .compatible = "superaudio,superaudioboard", },
+	{ .compatible = "rfcubedtech,superaudioboard", },
 	{},
 };
 MODULE_DEVICE_TABLE(of, snd_rpi_superaudioboard_of_match);

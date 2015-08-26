@@ -8,7 +8,7 @@
 	fragment@0 {
 		target = <&sound>;
 		__overlay__ {
-			compatible = "superaudio,superaudioboard";
+			compatible = "rfcubedtech,superaudioboard";
 			i2s-controller = <&i2s>;
 			status = "okay";
 		};
