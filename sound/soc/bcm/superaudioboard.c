@@ -34,7 +34,7 @@ static const unsigned int cs4272_rates_24576000[] = {
 static struct snd_pcm_hw_constraint_list cs4272_constraints_24576000 = {
 	.list = cs4272_rates_24576000,
 	.count = ARRAY_SIZE(cs4272_rates_24576000),
-}
+};
 
 static int snd_rpi_superaudioboard_startup(struct snd_pcm_substream *substream) {
 
