@@ -27,6 +27,24 @@
 
 //#include "../codecs/pcm512x.h"
 
+static const unsigned int cs4272_rates_24576000[] = {
+	48000, 96000, 192000,
+};
+
+static struct snd_pcm_hw_constraint_list cs4272_constraints_24576000 = {
+	.list = cs4272_rates_24576000,
+	.count = ARRAY_SIZE(cs4272_rates_24576000),
+}
+
+static int snd_rpi_superaudioboard_startup(struct snd_pcm_substream *substream) {
+
+	// Add constraints for 24.576MHz crystal
+	snd_pcm_hw_constraint_list(substream->runtime, 0, SNDRV_PCM_HW_PARAM_RATE,
+			&cs4272_constraints_24576000);
+
+	return 0;
+}
+
 static int snd_rpi_superaudioboard_init(struct snd_soc_pcm_runtime *rtd)
 {
 	struct snd_soc_codec *codec = rtd->codec;
@@ -57,11 +75,6 @@ static int snd_rpi_superaudioboard_hw_params(struct snd_pcm_substream *substream
 	return snd_soc_dai_set_bclk_ratio(cpu_dai, 64);
 }
 
-static int snd_rpi_superaudioboard_startup(struct snd_pcm_substream *substream) {
-	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-	struct snd_soc_codec *codec = rtd->codec;
-	return 0;
-}
 
 static void snd_rpi_superaudioboard_shutdown(struct snd_pcm_substream *substream) {
 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
